@@ -40,7 +40,6 @@ class Broker
             @transaction_bucket[op_rank][key] +=1
             return @transaction_bucket[op_label][key]
         self = @
-        console.log "Issuing #{op_label} with key #{key}"
         deferred_read = new Promise((fulfill, reject) ->
             transaction = new op_transaction(key, value)
             deferred_transaction = transaction.commit()
