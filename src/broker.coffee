@@ -71,5 +71,12 @@ class Broker
             @transaction_bucket[op_retry][key] +=1
         return deferred_read
 
+class BrokerOp
+    constructor:(@key) ->
+        return
 
-module.exports = Broker
+
+module.exports = {
+    'Broker': Broker,
+    'BrokerOp': BrokerOp
+}

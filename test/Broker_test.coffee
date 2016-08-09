@@ -1,13 +1,14 @@
-Broker = require "../src/broker"
+NBroker = require "../src/broker"
 assert = require "assert"
 Promise = require "promise"
 
 broker = null
 counter = 0
 process.env.BROKER_RETRY_LIMIT = 5
-class TestFailingTransaction
-    constructor: (@key) ->
-        return
+
+class TestFailingTransaction extends NBroker.BrokerOp
+    #constructor: (@key) ->
+    #    return
     commit: () ->
         counter +=1
         # return a promise that fails after 100 msecond
@@ -18,9 +19,9 @@ class TestFailingTransaction
             )
         )
 
-class TestFulfillingTransaction
-    constructor: (@key) ->
-        return
+class TestFulfillingTransaction extends NBroker.BrokerOp
+    #constructor: (@key) ->
+    #    return
     commit: () ->
         # return a promise that fails after 100 msecond
         return new Promise((fulfill, reject) ->
@@ -30,7 +31,7 @@ describe "Broker Tests", () ->
 
   beforeEach () ->
     counter = 0
-    broker = new Broker("Test Broker", 5)
+    broker = new NBroker.Broker("Test Broker", 5)
 
   afterEach () ->
     broker = null

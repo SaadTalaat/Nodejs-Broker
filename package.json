@@ -1,20 +1,16 @@
 {
   "name": "nodejs-broker",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "nodejs broker is an operation broker that narrows down multiple operations of the same type being executed to a single operation, while an operation is under execution every other operation of the same type blocks on that operation pending for its results",
   "main": "lib/broker.js",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul test/"
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul test/"
   },
   "keywords": [
     "nodejs",
     "operation",
     "broker"
   ],
-  "bin": {
-    "mocha": "./node_modules/mocha/bin/mocha",
-    "istanbul": "./node_modules/istanbul/bin/istanbul"
-  },
   "author": "Saad Talaat",
   "license": "GPL",
   "devDependencies": {
