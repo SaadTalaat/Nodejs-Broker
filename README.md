@@ -105,3 +105,30 @@ ReadOp.prototype.commit = function(){
 b.execute(ReadOp, "read", "http://example.com")
 ```
 
+
+## Testing Nodejs-Broker limits
+
+This script creates a readop which invokes a request for http://example.com 100 times. In standard cases, 100 times will take ages to complete. However, since only one request is invoked all 100 operations are fulfilled after one operation is complete.
+
+```coffeescript
+request = require("request")
+NBroker = require("nodejs-broker")
+
+b = new NBroker.Broker("My Custom Broker", 5) # 5 is the retrial hard limit
+passedreq = 0
+
+class ReadOp extends NBroker.BrokerOp
+  commit:() ->
+    self = @
+    return new Promise((fulfill, reject) ->
+      request.get(self.key, (errs, response, body) ->
+        if !errs
+          console.log("Request passed")
+          fulfill body
+      )
+    )
+    
+for i in [1..100]
+    (b.execute ReadOp, "read", "http://example.com")
+```
+Try this on your machine.
