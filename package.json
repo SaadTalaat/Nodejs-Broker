@@ -1,6 +1,6 @@
 {
   "name": "nodejs-broker",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "nodejs broker is an operation broker that narrows down multiple operations of the same type being executed to a single operation, while an operation is under execution every other operation of the same type blocks on that operation pending for its results",
   "main": "lib/broker.js",
   "scripts": {
@@ -22,5 +22,8 @@
   },
   "dependencies": {
     "promise": "^7.1.1"
+  },
+  "repository":{
+      "url":"git://github.com/SaadTalaat/Nodejs-Broker.git"
   }
 }

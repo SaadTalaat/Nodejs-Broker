@@ -1,6 +1,8 @@
 # Nodejs-Broker
 nodejs broker is an operation broker that narrows down multiple operations of the same type being executed to a single operation, while an operation is under execution every other operation of the same type blocks on that operation pending for its results
 
+Version: 0.1.4
+
 ## How it works
 Suppose you have a database which contains 10K records and these records are being queried by millions of users. Assume in a given moment 100 requests are being processed to read the same record for 100 users this seems like a huge waste. Or assume that you have a website and an article on your website has gone viral, serving the same article many times at the same moment also seems like a huge waste.
 Nodejs-Broker allows you to process only one type of the operation reading the same set of data and all other equivalent operations block on that operation. Hence, lower response time and better resource utilization.
